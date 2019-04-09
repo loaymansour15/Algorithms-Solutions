@@ -1,0 +1,49 @@
+import time
+from threading import Thread
+
+
+# start
+print("Program Started....")
+print("#################################################################\n")
+start = time.time()
+# program excution time
+##############################################################################
+##############################################################################
+##############################################################################
+
+
+def solve(arr, lis):
+
+    for i in range(1, len(arr)):
+        for j in range(0, i):
+            if arr[i] > arr[j]:
+                lis[i] = max(lis[j]+1, lis[i])
+
+    print(lis)
+    print("longest inc sub-sequence",max(lis))
+
+# Main
+def main():
+
+   arr = [10,22,9,33,21,50,41,60]
+   lis = [1]*len(arr)
+
+   solve(arr, lis)
+
+# end main
+
+
+# Program Start
+if __name__ == "__main__":
+    main()
+
+
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+# program excution time
+end = time.time() - start
+print("\n#################################################################")
+print("Program Terminated && ===> run in", str(end), "seconds.")
+print("This Program was Developed by: Loay Mansour.")

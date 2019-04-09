@@ -1,0 +1,50 @@
+
+N, M = 8, 8
+
+
+def can_move(r, c, col):
+    for i in range(c):
+        if r == col[i] or (abs(col[i] - r) == abs(i - c)):
+            return False
+
+    return True
+
+
+def solve(board, col, c):
+    if c == M:
+        return True
+
+    for i in range(N):
+        if can_move(i, c, col):
+            board[i][c] = 1
+            col[c] = i
+            if solve(board, col, c+1):
+                return True
+            board[i][c] = 0
+            col[c] = -1
+    return False
+
+
+def main():
+
+    col = []
+    for i in range(M):
+        col.append(-1)
+
+    board = [0] * N
+    for i in range(M):
+        board[i] = ([0] * N)
+
+    ans = solve(board, col, 0)
+
+    if ans:
+        print("\nFound Solution \n")
+    else:
+        print("\nSolution Not Found \n")
+
+    for i in range(N):
+        print(board[i])
+
+
+if __name__ == "__main__":
+    main()

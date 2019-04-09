@@ -1,0 +1,55 @@
+import time
+from threading import Thread
+
+
+# start
+print("Program Started....")
+print("#################################################################\n")
+start = time.time()
+# program excution time
+##############################################################################
+##############################################################################
+##############################################################################
+
+
+#comlexity O(n log n)
+
+def solve(knapsack, bag, bagCapacity):
+    knapsack.sort(key=lambda tup: tup[2], reverse=True)
+
+    for i in range(len(knapsack)):
+        if knapsack[i][0] <= bagCapacity:
+            bag.append(knapsack[i][1])
+            bagCapacity -= knapsack[i][0]
+        else:
+            frac = bagCapacity / knapsack[i][0]
+            bag.append(int(frac*knapsack[i][1]))
+            bagCapacity -= int(frac * knapsack[i][0])
+
+    return sum(bag)
+
+# Main
+def main():
+    knapsack = [(10, 60, 60//10), (20, 100, 100//20), (30, 120, 120//30)]
+    bag = []
+    bagCapacity = 50
+    print(solve(knapsack, bag, bagCapacity))
+
+
+
+# end main
+
+# Program Start
+if __name__ == "__main__":
+    main()
+
+
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+# program excution time
+end = time.time() - start
+print("\n#################################################################")
+print("Program Terminated && ===> run in", str(end), "seconds.")
+print("This Program was Developed by: Loay Mansour.")

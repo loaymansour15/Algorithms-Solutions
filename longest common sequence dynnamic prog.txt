@@ -1,0 +1,76 @@
+import time
+from threading import Thread
+
+
+# start
+print("Program Started....")
+print("#################################################################\n")
+start = time.time()
+# program excution time
+##############################################################################
+##############################################################################
+##############################################################################
+
+
+def lcs(arr, s1, s2):
+    ans = ""
+    col = len(arr[0]) - 1
+    row = len(arr) - 1
+    while arr[row][col] != 0:
+        x = arr[row][col]
+        if x > arr[row-1][col] and x > arr[row][col-1]:
+            ans += s1[row - 1]
+            row -= 1
+            col -= 1
+        else:
+            if x == arr[row-1][col]:
+                row -= 1
+            else:
+                col -= 1
+
+    print("Longest common sequence:", ans[::-1])
+
+
+def solve(s1, s2):
+    arr = [0] * (len(s1) + 1)
+    temp = [0] * (len(s2) + 1)
+    for i in range(len(arr)):
+        arr[i] = (list(temp))
+
+    for i in range(1, len(s1) + 1):
+        c = s1[i-1]
+        for j in range(1, len(s2) + 1):
+            if c == s2[j-1]:
+                arr[i][j] = arr[i-1][j-1] + 1
+            else:
+                arr[i][j] = max(arr[i][j-1], arr[i-1][j])
+
+    return arr
+
+
+# Main
+def main():
+
+   s1 = input()
+   s2 = input()
+
+   arr = solve(s1, s2)
+   lcs(arr, s1, s2)
+
+# end main
+
+
+# Program Start
+if __name__ == "__main__":
+    main()
+
+
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+# program excution time
+end = time.time() - start
+print("\n#################################################################")
+print("Program Terminated && ===> run in", str(end), "seconds.")
+print("This Program was Developed by: Loay Mansour.")

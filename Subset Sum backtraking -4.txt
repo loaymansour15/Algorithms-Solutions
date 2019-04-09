@@ -1,0 +1,29 @@
+
+
+ans = []
+
+
+def solve(arr, tar, n, i):
+    if sum(ans) == tar:
+        print(sum(ans), ans)
+        return
+    if i == n:
+        return
+
+    for x in range(i, n):
+        ans.append(arr[x])
+        solve(arr, tar, n, x+1)
+        if len(ans) > 0:
+            ans.pop(-1)
+
+
+def main():
+
+    arr = [15, 22, 14, 26, 32, 9, 16, 8]
+    tar = 53
+    n = len(arr)
+    solve(arr, tar, n, 0)
+
+
+if __name__ == "__main__":
+    main()

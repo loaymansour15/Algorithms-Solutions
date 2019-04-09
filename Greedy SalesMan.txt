@@ -1,0 +1,50 @@
+import time
+from threading import Thread
+
+
+# start
+print("Program Started....")
+print("#################################################################\n")
+start = time.time()
+# program excution time
+##############################################################################
+##############################################################################
+##############################################################################
+
+#Complexity O(n*2)
+def solve(arr, ans):
+
+    for i in range(len(arr)):
+        x = arr[i]
+        for j in range(x[0]-1, -1, -1):
+            if ans[j] == -1:
+                ans[j] = x[1]
+                break
+
+    return sum(ans)
+
+# Main
+def main():
+    arr = [(2,100), (1,19), (2,27), (1,25), (3,15)]
+    arr.sort(key=lambda tup: tup[1], reverse=True)
+    maxT = max(arr, key=lambda x: x[0])[0]
+    ans = [-1]*maxT
+    print(solve(arr, ans))
+
+
+# end main
+
+# Program Start
+if __name__ == "__main__":
+    main()
+
+
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+# program excution time
+end = time.time() - start
+print("\n#################################################################")
+print("Program Terminated && ===> run in", str(end), "seconds.")
+print("This Program was Developed by: Loay Mansour.")
